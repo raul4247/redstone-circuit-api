@@ -1,9 +1,16 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const UserStatus = require('../models/UserStatus')
 
 const router = express.Router()
+
+function generateToken(userId) {
+    return jwt.sign({ id: userId }, process.env.SECRET, {
+        expiresIn: 3600
+    })
+}
 
 router.patch("/auth/reset-password/:username", async (req, res) => {
     try {
@@ -30,7 +37,7 @@ router.patch("/auth/reset-password/:username", async (req, res) => {
         const updatedUser = await User.findOneAndUpdate({ username }, {
             password: await bcrypt.hash(newPassword, 10),
             status: UserStatus.ACTIVE
-        }, {returnOriginal: false})
+        }, { returnOriginal: false })
 
         return res.send(updatedUser)
     } catch (err) {
@@ -56,7 +63,8 @@ router.post("/auth/login", async (req, res) => {
             return res.status(400).send({ 'error': `Invalid password` })
 
         // TODO generate jwt token..
-        return res.send("ok!")
+        const token = generateToken(user.id)
+        return res.send({ token: token })
     } catch (err) {
         return res.status(400).send({ 'error': 'Failed to get token' })
     }
