@@ -1,11 +1,6 @@
 const mongoose = require('../db/index')
 const bcrypt = require('bcryptjs')
-
-const USER_STATUS = {
-    DISABLED: 'DISABLED',
-    RESET_PASSWORD: 'RESET_PASSWORD',
-    ACTIVE: 'ACTIVE'
-}
+const UserStatus = require('./UserStatus')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -24,7 +19,7 @@ const userSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: USER_STATUS.DISABLED
+        default: UserStatus.DISABLED
     }
 })
 
@@ -35,6 +30,4 @@ userSchema.pre('save', async function(next) {
     return next()
 })
 
-const user = mongoose.model('User', userSchema)
-
-module.exports = user
+module.exports = mongoose.model('User', userSchema)

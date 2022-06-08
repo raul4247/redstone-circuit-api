@@ -1,0 +1,5 @@
+module.exports = {
+    DISABLED: 'DISABLED',
+    RESET_PASSWORD: 'RESET_PASSWORD',
+    ACTIVE: 'ACTIVE'
+}

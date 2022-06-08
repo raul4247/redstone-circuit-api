@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(require('./routes'))
 
 app.get('/', (req, res) => {
-    res.send('Redstone circuit is running! 🌎')
+    res.send('redstone-circuit-api 👌')
 })
 
-app.listen(process.env.SERVER_PORT)
+app.listen(process.env.SERVER_PORT, () => {
+    console.log('Redstone circuit is running! 🌎')
+})
