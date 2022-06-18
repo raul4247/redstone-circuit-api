@@ -13,8 +13,7 @@ router.get('/waypoints', async (req, res) => {
     }
 })
 
-
-router.post('/waypoints', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const waypoint = await Waypoint.create(req.body)
 
@@ -24,7 +23,7 @@ router.post('/waypoints', async (req, res) => {
     }
 })
 
-router.delete("/waypoints/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const waypoint = await Waypoint.findByIdAndDelete(req.params.id)
         if (!waypoint)

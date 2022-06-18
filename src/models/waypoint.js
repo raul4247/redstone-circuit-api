@@ -19,6 +19,4 @@ const waypointSchema = new mongoose.Schema({
     }
 })
 
-const waypoint = mongoose.model('Waypoint', waypointSchema)
-
-module.exports = waypoint
+module.exports = mongoose.model('Waypoint', waypointSchema)
