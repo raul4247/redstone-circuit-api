@@ -12,7 +12,7 @@ function generateToken(userId) {
     })
 }
 
-router.patch("/auth/reset-password/:username", async (req, res) => {
+router.patch("/reset-password/:username", async (req, res) => {
     try {
         const username = req.params.username
         const { temporaryPassword, newPassword } = req.body
@@ -45,7 +45,7 @@ router.patch("/auth/reset-password/:username", async (req, res) => {
     }
 })
 
-router.post("/auth/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body
 
