@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
     res.send('redstone-circuit-api 👌')
 })
 
-app.listen(process.env.SERVER_PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log('Redstone circuit is running! 🌎')
 })
