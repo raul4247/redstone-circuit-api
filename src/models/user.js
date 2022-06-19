@@ -1,6 +1,6 @@
 const mongoose = require('../db/index')
 const bcrypt = require('bcryptjs')
-const UserStatus = require('./userStatus')
+const UserStatus = require('./uuserStatus')
 
 const userSchema = new mongoose.Schema({
     name: {
